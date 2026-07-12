@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Servis - Nico Motor Bogor</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+body { background: #f0f2f5; }
+nav { background: #1a1a1a; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+nav h2 { color: #ffcc00; font-size: 20px; letter-spacing: 1px; }
+.nav-menu { display: flex; gap: 10px; }
+nav button { background: #ffcc00; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; }
+.container { max-width: 1100px; margin: 20px auto; padding: 20px; }
+.page { display: none; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
+.page.active { display: block; }
+h1 { color: #1a1a1a; margin-bottom: 10px; font-size: 26px; }
+.subtitle { color: #666; margin-bottom: 20px; }
+.banner { width: 100%; height: 280px; object-fit: cover; border-radius: 12px; margin: 20px 0; }
+.info-box { background: #fff3cd; border-left: 4px solid #ffcc00; padding: 15px; border-radius: 6px; margin: 20px 0; }
+.about-box { background: #1a1a1a; color: white; padding: 25px; border-radius: 12px; margin: 25px 0; }
+.about-box h3 { color: #ffcc00; margin-bottom: 12px; font-size: 18px; }
+.service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.service-card { border: 1px solid #e0e0e0; padding: 18px; border-radius: 12px; cursor: pointer; transition: 0.3s; display: flex; gap: 15px; background: #fafafa; }
+.service-card:hover { border-color: #ffcc00; box-shadow: 0 4px 12px rgba(255,204,0,0.2); transform: translateY(-2px); }
+.service-card img { width: 90px; height: 90px; object-fit: cover; border-radius: 8px; }
+.service-card h4 { color: #1a1a1a; font-size: 16px; margin-bottom: 5px; }
+.detail-img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; }
+label { font-weight: 600; color: #333; display: block; margin-top: 12px; }
+input, select, textarea { width: 100%; padding: 12px; margin: 8px 0 15px 0; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; }
+.btn { background: #ffcc00; color: #000; padding: 14px 25px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; width: 100%; font-size: 16px; }
+.btn:hover { background: #e6b800; }
+.btn-secondary { background: #555; color: white; }
+.btn-group { display: flex; gap: 12px; }
+.bukti { background: #e8f5e9; padding: 25px; border-radius: 12px; }
+.bukti-box { border: 2px dashed #2e7d32; padding: 25px; margin: 15px 0; background: white; border-radius: 8px; }
+.list-detail { margin: 12px 0; padding-left: 22px; line-height: 1.8; }
+@media print { nav, .btn { display: none; } body { background: white; } }
+@media (max-width: 700px) { .container { padding: 12px; } .btn-group { flex-direction: column; } .service-card { flex-direction: column; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <h2>NICO MOTOR SERVICE BOGOR</h2>
+  <div class="nav-menu">
+    <button onclick="showPage('home')">Beranda</button>
+    <button onclick="showPage('booking')">Booking</button>
+  </div>
+</nav>
+
+<div class="container">
+  
+  <div id="home" class="page active">
+    <h1>Booking Servis Motor Harian</h1>
+    <p class="subtitle">Matic, Bebek, Sport 150cc. Pilih layanan, isi data, dan datang sesuai jadwal. Harga final setelah dicek mekanik.</p>
+    <img src="https://images.unsplash.com/photo-1558981852-426c6c22a060?q=80&w=1200" class="banner" alt="Bengkel Motor Bogor">
+    
+    <div class="info-box">
+      <b>Penting:</b> Harga di website adalah harga estimasi awal. Harga final akan diinformasikan setelah mekanik melakukan pengecekan. Pembayaran dilakukan di bengkel.
+    </div>
+
+    <div class="about-box">
+      <h3>TENTANG BENGKEL KAMI</h3>
+      <p><b>Jam Operasional:</b> Senin - Minggu, 08.00 - 20.00 WIB</p>
+      <p><b>Alamat:</b> Jl. Pajajaran No. 88, Bogor Tengah, Jawa Barat</p>
+      <p><b>Kontak WA:</b> 0812-3456-7890</p>
+    </div>
+
+    <h3>PILIH LAYAN SERVIS</h3>
+    <div class="service-grid">
+      <div class="service-card" onclick="bukaDetail('Servis Harian', 45000, 'Servis rutin untuk menjaga performa motor harian tetap prima', ['Bersihkan Karburator atau Injektor', 'Setel Klep dan Rantai Keteng', 'Cek Oli Mesin dan Rantai', 'Cek Sistem Kelistrikan dan Rem'], 'https://images.unsplash.com/photo-1603387362900-f18e25932ec5?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1603387362900-f18e25932ec5?q=80&w=400" alt="Servis Harian Motor">
+        <div><h4>Servis Harian</h4><p>Estimasi: Rp 45.000<br><small>Waktu: 30 menit</small></p></div>
+      </div>
+      <div class="service-card" onclick="bukaDetail('Ganti Oli Mesin', 55000, 'Ganti oli mesin dengan merk sesuai pilihan anda', ['Oli Mesin + Jasa Pasang', 'Cek Volume dan Kualitas Oli', 'Pengecekan 10 Titik Gratis'], 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=400" alt="Ganti Oli Motor">
+        <div><h4>Ganti Oli Mesin</h4><p>Estimasi: Rp 55.000<br><small>Waktu: 15 menit</small></p></div>
+      </div>
+      <div class="service-card" onclick="bukaDetail('Service CVT Matic', 80000, 'Perawatan sistem CVT untuk motor matic agar tarikan lebih enteng', ['Bongkar dan Bersihkan CVT', 'Pengecekan Roller dan V-Belt', 'Pelumasan dan Setting Ulang'], 'https://images.unsplash.com/photo-1619888774730-20ba2b13e8d9?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1619888774730-20ba2b13e8d9?q=80&w=400" alt="Service CVT Motor Matic">
+        <div><h4>Service CVT Matic</h4><p>Estimasi: Rp 80.000<br><small>Waktu: 45 menit</small></p></div>
+      </div>
+      <div class="service-card" onclick="bukaDetail('Ganti Kampas Rem', 50000, 'Penggantian kampas rem untuk keamanan pengereman', ['Kampas Rem Depan atau Belakang', 'Pengecekan Minyak Rem', 'Penyetelan Rem'], 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=400" alt="Ganti Kampas Rem Motor">
+        <div><h4>Ganti Kampas Rem</h4><p>Estimasi: Rp 50.000<br><small>Waktu: 20 menit</small></p></div>
+      </div>
+      <div class="service-card" onclick="bukaDetail('Ganti Ban Motor', 70000, 'Pemasangan ban baru untuk motor anda', ['Ban Baru + Jasa Pasang', 'Pengecekan Tekanan Angin', 'Penggantian Pentil'], 'https://images.unsplash.com/photo-1619888774730-20ba2b13e8d9?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1619888774730-20ba2b13e8d9?q=80&w=400" alt="Ganti Ban Motor">
+        <div><h4>Ganti Ban Motor</h4><p>Estimasi: Rp 70.000<br><small>Waktu: 30 menit</small></p></div>
+      </div>
+      <div class="service-card" onclick="bukaDetail('Service Rantai dan Gir', 30000, 'Perawatan rantai agar tidak berisik dan awet', ['Pembersihan Rantai', 'Pelumasan Rantai', 'Penyetelan Kekencangan'], 'https://images.unsplash.com/photo-1603387362900-f18e25932ec5?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1603387362900-f18e25932ec5?q=80&w=400" alt="Service Rantai Motor">
+        <div><h4>Service Rantai dan Gir</h4><p>Estimasi: Rp 30.000<br><small>Waktu: 15 menit</small></p></div>
+      </div>
+      <div class="service-card" onclick="bukaDetail('Ganti Aki Motor', 250000, 'Penggantian aki motor dengan garansi resmi', ['Aki Baru Merek GS atau Yuasa', 'Pemasangan dan Pengecekan Pengisian', 'Garansi 3 Bulan'], 'https://images.unsplash.com/photo-1619888774730-20ba2b13e8d9?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1619888774730-20ba2b13e8d9?q=80&w=400" alt="Ganti Aki Motor">
+        <div><h4>Ganti Aki Motor</h4><p>Estimasi: Rp 250.000<br><small>Waktu: 20 menit</small></p></div>
+      </div>
+      <div class="service-card" onclick="bukaDetail('Tune Up Injeksi', 120000, 'Service sistem injeksi agar motor irit dan bertenaga', ['Pembersihan Throttle Body', 'Reset ECU', 'Pengecekan Busi dan Filter Udara'], 'https://images.unsplash.com/photo-1603387362900-f18e25932ec5?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1603387362900-f18e25932ec5?q=80&w=400" alt="Tune Up Injeksi Motor">
+        <div><h4>Tune Up Injeksi</h4><p>Estimasi: Rp 120.000<br><small>Waktu: 60 menit</small></p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="detailLayanan" class="page">
+    <img id="detailGambar" class="detail-img" src="">
+    <h1 id="detailJudul"></h1>
+    <p id="detailDeskripsi"></p>
+    <h3>Yang Dikerjakan:</h3>
+    <ul id="detailList" class="list-detail"></ul>
+    <p style="color:#e91e63; font-weight:bold; margin-top:15px">Estimasi Harga: <span id="detailHarga"></span></p>
+    <p><small>*Harga final ditentukan setelah pengecekan di bengkel</small></p>
+    <div class="btn-group">
+      <button class="btn" onclick="showPage('booking')">Lanjut Booking</button>
+      <button class="btn btn-secondary" onclick="showPage('home')">Kembali</button>
+    </div>
+  </div>
+
+  <div id="booking" class="page">
+    <h1>Form Booking Servis</h1>
+    <input type="text" id="nama" placeholder="Nama Lengkap Pemilik" required>
+    
+    <label>Jenis Motor</label>
+    <select id="jenisMotor" onchange="updateOli()">
+      <option value="">Pilih Jenis Motor</option>
+      <option value="Matic">Matic - Beat, Vario, Mio, Scoopy, Nmax 155</option>
+      <option value="Bebek">Bebek - Supra, Revo, Vega, Jupiter</option>
+      <option value="Sport 150cc">Sport 150cc - Vixion, CBR 150, R15, GSX</option>
+    </select>
+
+    <label id="labelOli" style="display:none">Pilih Merk Oli Yang Diinginkan</label>
+    <select id="pilihOli" style="display:none">
+      <option value="">Pilih Merk Oli</option>
+      <option value="Federal Oil 10W-30">Federal Oil 10W-30</option>
+      <option value="Shell Advance AX5 10W-30">Shell Advance AX5 10W-30</option>
+      <option value="Yamalube Sport 10W-40">Yamalube Sport 10W-40</option>
+      <option value="Castrol Power1 10W-40">Castrol Power1 10W-40</option>
+      <option value="Motul 5100 10W-40">Motul 5100 10W-40</option>
+    </select>
+
+    <input type="text" id="motor" placeholder="Contoh: Honda Beat 2023">
+    <input type="text" id="plat" placeholder="Contoh: F 1234 AB">
+    <input type="tel" id="nohp" placeholder="Nomor WhatsApp Aktif">
+    <label>Tanggal Servis</label>
+    <input type="date" id="tanggal">
+    <label>Jam Servis</label>
+    <input type="time" id="jam">
+    <label>Keluhan Motor</label>
+    <textarea id="keluhan" placeholder="Jelaskan keluhan sedetail mungkin. Contoh: Mesin brebet saat gas, Rem depan bunyi"></textarea>
+    
+    <label>Catatan Request Part</label>
+    <textarea id="catatan" placeholder="Contoh: Mau pakai oli Shell Advance, Kampas Rem Honda Original"></textarea>
+
+    <div class="btn-group">
+      <button class="btn" onclick="submitBooking()">Kirim Booking</button>
+      <button class="btn btn-secondary" onclick="showPage('home')">Kembali</button>
+    </div>
+  </div>
+
+  <div id="bukti" class="page">
+    <div class="bukti">
+      <h1>Booking Berhasil</h1>
+      <p>Silahkan simpan bukti booking ini dan datang sesuai jadwal. Kami akan konfirmasi via WhatsApp 1 jam sebelum jadwal.</p>
+      <div class="bukti-box" id="buktiIsi"></div>
+      <div class="btn-group">
+        <button class="btn" onclick="window.print()">Cetak Bukti Booking</button>
+        <button class="btn btn-secondary" onclick="showPage('home')">Kembali ke Beranda</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let dataBooking = {};
+let layananDipilih = {nama: '', harga: 0, detail: '', list: [], gambar: ''};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function bukaDetail(nama, harga, deskripsi, list, gambar) {
+  layananDipilih = {nama, harga, detail: deskripsi, list, gambar};
+  document.getElementById('detailGambar').src = gambar;
+  document.getElementById('detailJudul').innerText = nama;
+  document.getElementById('detailDeskripsi').innerText = deskripsi;
+  document.getElementById('detailHarga').innerText = 'Rp ' + harga.toLocaleString('id-ID');
+  let listHTML = '';
+  list.forEach(item => { listHTML += `<li>${item}</li>` });
+  document.getElementById('detailList').innerHTML = listHTML;
+  
+  // tampilkan pilihan oli jika layanan ganti oli
+  if(nama.includes('Oli')) {
+    document.getElementById('labelOli').style.display = 'block';
+    document.getElementById('pilihOli').style.display = 'block';
+  } else {
+    document.getElementById('labelOli').style.display = 'none';
+    document.getElementById('pilihOli').style.display = 'none';
+  }
+  
+  showPage('detailLayanan');
+}
+
+function updateOli() {
+  const labelOli = document.getElementById('labelOli');
+  const selectOli = document.getElementById('pilihOli');
+  
+  if(layananDipilih.nama.includes('Oli')) {
+    labelOli.style.display = 'block';
+    selectOli.style.display = 'block';
+  } else {
+    labelOli.style.display = 'none';
+    selectOli.style.display = 'none';
+  }
+}
+
+function submitBooking() {
+  const nama = document.getElementById('nama').value;
+  if(nama == '' || document.getElementById('jenisMotor').value == '' || document.getElementById('tanggal').value == '') {
+    return alert('Harap isi Nama, Jenis Motor, dan Tanggal Servis');
+  }
+
+  dataBooking = {
+    nama: nama,
+    jenis: document.getElementById('jenisMotor').value,
+    motor: document.getElementById('motor').value,
+    plat: document.getElementById('plat').value,
+    nohp: document.getElementById('nohp').value,
+    tanggal: document.getElementById('tanggal').value,
+    jam: document.getElementById('jam').value,
+    keluhan: document.getElementById('keluhan').value,
+    catatan: document.getElementById('catatan').value,
+    oli: document.getElementById('pilihOli').value,
+    layanan: layananDipilih.nama,
+    estimasi: layananDipilih.harga,
+    detailLayanan: layananDipilih.detail
+  };
+
+  const kode = 'NMS' + Math.floor(Math.random()*9000 + 1000);
+  document.getElementById('buktiIsi').innerHTML = `
+    <h3 style="text-align:center">BUKTI BOOKING SERVIS</h3>
+    <hr>
+    <p><b>Kode Booking:</b> #${kode}</p>
+    <p><b>Nama:</b> ${dataBooking.nama}</p>
+    <p><b>Jenis Motor:</b> ${dataBooking.jenis}</p>
+    <p><b>Motor:</b> ${dataBooking.motor} - ${dataBooking.plat}</p>
+    <p><b>Nomor WA:</b> ${dataBooking.nohp}</p>
+    <p><b>Layanan:</b> ${dataBooking.layanan}</p>
+    ${dataBooking.oli ? `<p><b>Request Oli:</b> ${dataBooking.oli}</p>` : ''}
+    <p><b>Jadwal:</b> ${dataBooking.tanggal} Pukul ${dataBooking.jam}</p>
+    <p><b>Keluhan:</b> ${dataBooking.keluhan}</p>
+    <p><b>Catatan:</b> ${dataBooking.catatan || '-'}</p>
+    <hr>
+    <p><b>Estimasi Harga:</b> Rp ${dataBooking.estimasi.toLocaleString('id-ID')}</p>
+    <p><small>*Harga final akan dikonfirmasi setelah pengecekan mekanik</small></p>
+  `;
+  showPage('bukti');
+}
+</script>
+
+</body>
+</html>
