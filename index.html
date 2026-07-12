@@ -3,43 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nico Motor Service</title>
+<title>Nico Motor Service Bogor</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
 body { background: #f0f2f5; }
 nav { background: #1a1a1a; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
-nav h2 { color: #ffcc00; font-size: 20px; }
-nav div { display: flex; gap: 10px; }
-nav button { background: #ffcc00; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+nav h2 { color: #ffcc00; font-size: 18px; }
+.nav-menu { display: flex; gap: 8px; flex-wrap: wrap; }
+nav button { background: #ffcc00; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px; }
+nav button:hover { background: #e6b800; }
 .container { max-width: 1000px; margin: 20px auto; padding: 15px; }
 .page { display: none; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 .page.active { display: block; }
 h1 { color: #333; margin-bottom: 15px; font-size: 24px; }
 .banner { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; }
+.about-box { background: #1a1a1a; color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+.about-box h3 { color: #ffcc00; margin-bottom: 10px; }
 .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
 .service-card { border: 2px solid #eee; padding: 15px; border-radius: 10px; cursor: pointer; transition: 0.3s; display: flex; gap: 12px; }
 .service-card:hover { border-color: #ffcc00; transform: translateY(-3px); }
 .service-card img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
-.service-card h4 { color: #1a1a1a; }
+.detail-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
 input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
 .btn { background: #ffcc00; color: #000; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; width: 100%; }
 .btn:hover { background: #e6b800; }
 .btn-secondary { background: #333; color: white; }
+.btn-group { display: flex; gap: 10px; }
 .payment-method { border: 1px solid #ddd; padding: 12px; margin: 8px 0; border-radius: 5px; }
 .bukti { background: #e8f5e9; padding: 20px; border-radius: 10px; }
 .bukti-box { border: 2px dashed #333; padding: 20px; margin: 15px 0; background: white; }
 .harga-info { background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; font-size: 14px; }
+.list-detail { margin: 10px 0; padding-left: 20px; }
 @media print { nav, .btn { display: none; } body { background: white; } }
-@media (max-width: 600px) { .container { padding: 10px; } h1 { font-size: 20px; } .service-card { flex-direction: column; } }
+@media (max-width: 600px) { .container { padding: 10px; } h1 { font-size: 20px; } .service-card { flex-direction: column; } .btn-group { flex-direction: column; } nav h2 { font-size: 16px; } }
 </style>
 </head>
 <body>
 
+<!-- NAVBAR ADA DI SEMUA HALAMAN -->
 <nav>
-  <h2>🏍️ NICO MOTOR SERVICE</h2>
-  <div>
+  <h2>🏍️ NICO MOTOR BOGOR</h2>
+  <div class="nav-menu">
     <button onclick="showPage('home')">Beranda</button>
-    <button onclick="showPage('register')">Daftar</button>
+    <button onclick="showPage('booking')">Booking</button>
+    <button onclick="showPage('detail')">Riwayat</button>
   </div>
 </nav>
 
@@ -47,55 +54,47 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
   
   <!-- HALAMAN 1: BERANDA -->
   <div id="home" class="page active">
-    <h1>Bengkel Terpercaya di Depok</h1>
-    <p>Servis cepat 30 menit, mekanik ahli, harga transparan. Booking sekarang tanpa antri!</p>
-    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200" class="banner" alt="Bengkel">
+    <h1>Bengkel Motor Terpercaya di Bogor</h1>
+    <p>Servis cepat 30 menit, mekanik ahli, harga transparan. Klik layanan untuk lihat detail!</p>
+    <img src="https://images.unsplash.com/photo-1558981852-426c6c22a060?q=80&w=1200" class="banner" alt="Bengkel Motor">
+    
+    <div class="about-box">
+      <h3>🏆 Tentang Nico Motor Service Bogor</h3>
+      <p><b>Buka:</b> Senin - Minggu, 08.00 - 20.00 WIB</p>
+      <p><b>Alamat:</b> Jl. Pajajaran No. 88, Bogor, Jawa Barat</p>
+      <p><b>WA:</b> 0812-3456-7890</p>
+      <p><b>Keunggulan:</b> Mekanik bersertifikat, Sparepart Original, Garansi Servis 7 Hari</p>
+    </div>
+
     <h3>Pilih Layanan Kami:</h3>
     <div class="service-grid">
-      <div class="service-card" onclick="pilihLayanan('Ganti Oli + Filter', 65000, 'Ganti oli mesin + filter oli + pengecekan 15 titik')">
-        <img src="https://images.unsplash.com/photo-1486262715619-67b85e0a3fc8?q=80&w=400" alt="Oli">
-        <div><h4>🛢️ Ganti Oli + Filter</h4><p>Mulai Rp 65.000<br><small>Oli + Jasa + Cek 15 titik</small></p></div>
+      <div class="service-card" onclick="bukaDetail('Ganti Oli + Filter', 65000, 'Ganti oli mesin + filter oli + pengecekan 15 titik', ['Ganti Oli Mesin', 'Ganti Filter Oli', 'Cek 15 Titik Motor'], 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=400" alt="Ganti Oli Motor">
+        <div><h4>🛢️ Ganti Oli + Filter</h4><p>Mulai Rp 65.000<br><small>Pilih merk oli sesuai motor</small></p></div>
       </div>
-      <div class="service-card" onclick="pilihLayanan('Tune Up Injeksi', 150000, 'Bersihkan TB, Reset ECU, Cek busi, Cek kelistrikan')">
-        <img src="https://images.unsplash.com/photo-1607603757086-1e0b1e0a2a2a?q=80&w=400" alt="Tuneup">
+      <div class="service-card" onclick="bukaDetail('Tune Up Injeksi', 150000, 'Perawatan lengkap sistem injeksi', ['Bersihkan Throttle Body', 'Reset ECU', 'Cek Busi'], 'https://images.unsplash.com/photo-1571068316344-75bc76e81590?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1571068316344-75bc76e81590?q=80&w=400" alt="Tune Up Motor">
         <div><h4>⚙️ Tune Up Injeksi</h4><p>Mulai Rp 150.000<br><small>Full service injeksi</small></p></div>
       </div>
-      <div class="service-card" onclick="pilihLayanan('Ganti Ban', 90000, 'Pasang ban baru + balancing + pentil baru')">
-        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=400" alt="Ban">
-        <div><h4>🛞 Ganti Ban</h4><p>Mulai Rp 90.000<br><small>Sudah termasuk pasang</small></p></div>
-      </div>
-      <div class="service-card" onclick="pilihLayanan('Ganti Kampas Rem', 75000, 'Ganti kampas rem depan/belakang + cek minyak rem')">
-        <img src="https://images.unsplash.com/photo-1621111848501-8dfee7a028ad?q=80&w=400" alt="Rem">
-        <div><h4>⛔ Ganti Kampas Rem</h4><p>Mulai Rp 75.000<br><small>Depan atau Belakang</small></p></div>
-      </div>
-      <div class="service-card" onclick="pilihLayanan('Service CVT', 120000, 'Bongkar CVT, bersihkan, cek roller, vanbelt, kampas ganda')">
-        <img src="https://images.unsplash.com/photo-1558981852-426c6c22a060?q=80&w=400" alt="CVT">
-        <div><h4>🔩 Service CVT</h4><p>Mulai Rp 120.000<br><small>Khusus matic</small></p></div>
-      </div>
-      <div class="service-card" onclick="pilihLayanan('Ganti Aki', 280000, 'Aki GS Astra + Garansi 6 bulan + pasang')">
-        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=400" alt="Aki">
-        <div><h4>🔋 Ganti Aki</h4><p>Mulai Rp 280.000<br><small>Garansi 6 bulan</small></p></div>
-      </div>
-      <div class="service-card" onclick="pilihLayanan('Service Rantai', 25000, 'Bersihkan rantai + lumasi + setel kekencangan')">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400" alt="Rantai">
-        <div><h4>⛓️ Service Rantai</h4><p>Mulai Rp 25.000<br><small>Bersih + Setel</small></p></div>
-      </div>
-      <div class="service-card" onclick="pilihLayanan('Cuci Motor Premium', 35000, 'Cuci body, semir ban, semir bodi, semprot mesin')">
-        <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=400" alt="Cuci">
-        <div><h4>🧽 Cuci Motor Premium</h4><p>Mulai Rp 35.000<br><small>Body + Mesin + Semir</small></p></div>
+      <div class="service-card" onclick="bukaDetail('Ganti Kampas Rem', 75000, 'Ganti kampas rem motor biar pengereman pakem', ['Kampas Rem Depan/Belakang', 'Cek Minyak Rem'], 'https://images.unsplash.com/photo-1679402678234-5a3b9c8f1a2b?q=80&w=800')">
+        <img src="https://images.unsplash.com/photo-1679402678234-5a3b9c8f1a2b?q=80&w=400" alt="Kampas Rem Motor">
+        <div><h4>⛔ Ganti Kampas Rem</h4><p>Mulai Rp 75.000<br><small>Pilih merk kampas rem</small></p></div>
       </div>
     </div>
-    <button class="btn" onclick="showPage('booking')">Booking Sekarang</button>
   </div>
 
-  <!-- HALAMAN 2: REGISTER -->
-  <div id="register" class="page">
-    <h1>📝 Daftar Akun</h1>
-    <input type="text" id="regNama" placeholder="Nama Lengkap">
-    <input type="tel" id="regNo" placeholder="Nomor HP / WA">
-    <input type="email" id="regEmail" placeholder="Email">
-    <input type="password" id="regPass" placeholder="Password">
-    <button class="btn" onclick="daftar()">Daftar</button>
+  <!-- HALAMAN 2: DETAIL LAYAN -->
+  <div id="detailLayanan" class="page">
+    <img id="detailGambar" class="detail-img" src="">
+    <h1 id="detailJudul"></h1>
+    <p id="detailDeskripsi"></p>
+    <h3>Yang didapat:</h3>
+    <ul id="detailList" class="list-detail"></ul>
+    <h2 style="color:#e91e63; margin-top:15px">Mulai dari: <span id="detailHarga"></span></h2>
+    <div class="btn-group">
+      <button class="btn" onclick="showPage('booking')">Booking Sekarang</button>
+      <button class="btn btn-secondary" onclick="showPage('home')">Kembali ke Beranda</button>
+    </div>
   </div>
 
   <!-- HALAMAN 3: FORM BOOKING -->
@@ -104,7 +103,7 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
     <input type="text" id="nama" placeholder="Nama Pemilik" required>
     
     <label>Tipe Motor:</label>
-    <select id="tipeMotor" onchange="hitungUlangHarga()">
+    <select id="tipeMotor" onchange="updateOli()">
       <option value="0">Pilih Tipe Motor</option>
       <option value="0">1. Entry Level - Beat, Vario 110, Mio</option>
       <option value="20000">2. Reguler - Vario 125, Nmax, PCX 160</option>
@@ -112,22 +111,35 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
       <option value="100000">4. Premium - Harley, Ninja 400, Xmax 250</option>
     </select>
 
+    <label id="labelOli" style="display:none">Pilih Merk Oli:</label>
+    <select id="pilihOli" style="display:none"></select>
+
     <input type="text" id="motor" placeholder="Jenis Motor: Honda Beat 2023">
-    <input type="text" id="plat" placeholder="No Plat: B 1234 ABC">
+    <input type="text" id="plat" placeholder="No Plat: F 1234 AB">
     <input type="tel" id="nohp" placeholder="Nomor WA">
     <label>Tanggal Servis:</label>
     <input type="date" id="tanggal">
     <label>Jam:</label>
     <input type="time" id="jam">
-    <textarea id="keluhan" placeholder="Keluhan Motor: Mesin brebet, Rem bunyi, dll"></textarea>
-    <button class="btn" onclick="lanjutDetail()">Lanjut ke Detail</button>
+    <textarea id="keluhan" placeholder="Keluhan Motor"></textarea>
+    
+    <label>Catatan Khusus / Request Part:</label>
+    <textarea id="catatan" placeholder="Contoh: Mau oli Motul, Kampas Brembo"></textarea>
+
+    <div class="btn-group">
+      <button class="btn" onclick="lanjutDetail()">Lanjut ke Ringkasan</button>
+      <button class="btn btn-secondary" onclick="showPage('home')">Kembali</button>
+    </div>
   </div>
 
-  <!-- HALAMAN 4: DETAIL BOOKING -->
+  <!-- HALAMAN 4: RINGKASAN BOOKING -->
   <div id="detail" class="page">
-    <h1>📋 Detail Booking</h1>
+    <h1>📋 Ringkasan Booking</h1>
     <div id="detailIsi"></div>
-    <button class="btn" onclick="showPage('bayar')">Lanjut Pembayaran</button>
+    <div class="btn-group">
+      <button class="btn" onclick="showPage('bayar')">Lanjut Pembayaran</button>
+      <button class="btn btn-secondary" onclick="showPage('booking')">Kembali</button>
+    </div>
   </div>
 
   <!-- HALAMAN 5: PEMBAYARAN -->
@@ -136,11 +148,13 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
     <div class="harga-info" id="infoHarga"></div>
     <p>Total Bayar: <b id="totalBayar" style="font-size:20px; color:#e91e63">Rp 0</b></p>
     <h3>Pilih Metode:</h3>
-    <div class="payment-method"><input type="radio" name="bayar" value="Transfer BCA"> <b>Transfer BCA</b> - 1234567890 a.n Nico</div>
+    <div class="payment-method"><input type="radio" name="bayar" value="Transfer BCA"> <b>Transfer BCA</b> - 1234567890</div>
     <div class="payment-method"><input type="radio" name="bayar" value="E-Wallet DANA"> <b>E-Wallet DANA</b> - 081234567890</div>
-    <div class="payment-method"><input type="radio" name="bayar" value="E-Wallet OVO"> <b>E-Wallet OVO</b> - 081234567890</div>
     <div class="payment-method"><input type="radio" name="bayar" value="Bayar di Tempat"> <b>Bayar di Tempat / COD</b></div>
-    <button class="btn" onclick="bayar()">Konfirmasi Bayar</button>
+    <div class="btn-group">
+      <button class="btn" onclick="bayar()">Konfirmasi Bayar</button>
+      <button class="btn btn-secondary" onclick="showPage('detail')">Kembali</button>
+    </div>
   </div>
 
   <!-- HALAMAN 6: BUKTI BAYAR -->
@@ -148,9 +162,10 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
     <div class="bukti">
       <h1>✅ Booking Berhasil!</h1>
       <div class="bukti-box" id="buktiIsi"></div>
-      <p>Simpan bukti ini. Kami akan WA kamu 1 jam sebelum jadwal.</p>
-      <button class="btn" onclick="window.print()">🖨️ Cetak Bukti</button>
-      <button class="btn btn-secondary" onclick="showPage('home')">Kembali ke Beranda</button>
+      <div class="btn-group">
+        <button class="btn" onclick="window.print()">🖨️ Cetak Bukti</button>
+        <button class="btn btn-secondary" onclick="showPage('home')">Kembali ke Beranda</button>
+      </div>
     </div>
   </div>
 
@@ -158,7 +173,14 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
 
 <script>
 let dataBooking = {};
-let layananDipilih = {nama: 'Ganti Oli + Filter', harga: 65000, detail: ''};
+let layananDipilih = {nama: '', harga: 0, detail: '', list: [], gambar: ''};
+
+const dataOli = {
+ 0: ['Federal Matic 10W-30', 'Shell Advance AX5 10W-30', 'Yamalube AT 10W-40'],
+  20000: ['Shell Advance AX7 10W-40', 'Motul Scooter LE 10W-40', 'Castrol Power1 Matic 10W-40'],
+  50000: ['Motul 5100 10W-40', 'Shell Advance Ultra 10W-40', 'Ipone R4000 10W-40'],
+ 100000: ['Motul 7100 10W-50', 'Ipone R4000RS 15W-50', 'Repsol Racing 10W-50']
+};
 
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -166,26 +188,41 @@ function showPage(id) {
   window.scrollTo(0,0);
 }
 
-function pilihLayanan(nama, harga, detail) {
-  layananDipilih = {nama, harga, detail};
-  alert(nama + ' dipilih - Harga mulai Rp ' + harga.toLocaleString('id-ID'));
+function bukaDetail(nama, harga, deskripsi, list, gambar) {
+  layananDipilih = {nama, harga, detail: deskripsi, list, gambar};
+  document.getElementById('detailGambar').src = gambar;
+  document.getElementById('detailJudul').innerText = nama;
+  document.getElementById('detailDeskripsi').innerText = deskripsi;
+  document.getElementById('detailHarga').innerText = 'Rp ' + harga.toLocaleString('id-ID');
+  let listHTML = '';
+  list.forEach(item => { listHTML += `<li>${item}</li>` });
+  document.getElementById('detailList').innerHTML = listHTML;
+  showPage('detailLayanan');
 }
 
-function hitungUlangHarga() {
-  const tambahan = parseInt(document.getElementById('tipeMotor').value);
-  const total = layananDipilih.harga + tambahan;
-  document.getElementById('totalBayar').innerText = 'Rp ' + total.toLocaleString('id-ID');
-}
-
-function daftar() {
-  alert('Pendaftaran Berhasil! Silakan Booking');
-  showPage('home');
+function updateOli() {
+  const tipe = document.getElementById('tipeMotor').value;
+  const selectOli = document.getElementById('pilihOli');
+  const labelOli = document.getElementById('labelOli');
+  
+  if(tipe !== "0" && layananDipilih.nama.includes('Oli')) {
+    labelOli.style.display = 'block';
+    selectOli.style.display = 'block';
+    selectOli.innerHTML = '';
+    dataOli[tipe].forEach(oli => {
+      selectOli.innerHTML += `<option value="${oli}">${oli}</option>`;
+    });
+  } else {
+    labelOli.style.display = 'none';
+    selectOli.style.display = 'none';
+  }
 }
 
 function lanjutDetail() {
   const tambahan = parseInt(document.getElementById('tipeMotor').value);
   const totalHarga = layananDipilih.harga + tambahan;
   const tipeText = document.getElementById('tipeMotor').options[document.getElementById('tipeMotor').selectedIndex].text;
+  const oliPilihan = document.getElementById('pilihOli').value;
 
   dataBooking = {
     nama: document.getElementById('nama').value,
@@ -196,6 +233,8 @@ function lanjutDetail() {
     tanggal: document.getElementById('tanggal').value,
     jam: document.getElementById('jam').value,
     keluhan: document.getElementById('keluhan').value,
+    catatan: document.getElementById('catatan').value,
+    oli: oliPilihan,
     layanan: layananDipilih.nama,
     hargaDasar: layananDipilih.harga,
     tambahan: tambahan,
@@ -204,22 +243,15 @@ function lanjutDetail() {
   };
 
   document.getElementById('detailIsi').innerHTML = `
+    <p><b>Layanan Dipilih:</b> ${dataBooking.layanan}</p>
+    ${dataBooking.oli ? `<p><b>Merk Oli:</b> ${dataBooking.oli}</p>` : ''}
+    <hr>
     <p><b>Nama:</b> ${dataBooking.nama}</p>
     <p><b>Tipe Motor:</b> ${dataBooking.tipe}</p>
     <p><b>Motor:</b> ${dataBooking.motor} - ${dataBooking.plat}</p>
-    <p><b>Layanan:</b> ${dataBooking.layanan}</p>
-    <p><b>Detail:</b> ${dataBooking.detailLayanan}</p>
     <p><b>Tanggal:</b> ${dataBooking.tanggal} Jam ${dataBooking.jam}</p>
-    <p><b>Keluhan:</b> ${dataBooking.keluhan}</p>
-    <p><b>Harga Dasar:</b> Rp ${dataBooking.hargaDasar.toLocaleString('id-ID')}</p>
-    <p><b>Tambahan Tipe:</b> Rp ${dataBooking.tambahan.toLocaleString('id-ID')}</p>
-    <hr>
+    <p><b>Catatan:</b> ${dataBooking.catatan || '-'}</p>
     <p><b>Total:</b> Rp ${dataBooking.harga.toLocaleString('id-ID')}</p>
-  `;
-
-  document.getElementById('infoHarga').innerHTML = `
-    Harga Dasar: Rp ${dataBooking.hargaDasar.toLocaleString('id-ID')} <br>
-    Tambahan ${dataBooking.tipe.split('-')[0]}: Rp ${dataBooking.tambahan.toLocaleString('id-ID')}
   `;
   document.getElementById('totalBayar').innerText = 'Rp ' + dataBooking.harga.toLocaleString('id-ID');
   showPage('detail');
@@ -231,19 +263,18 @@ function bayar() {
   dataBooking.metode = metode.value;
   const kode = 'NMS' + Math.floor(Math.random()*9000 + 1000);
   document.getElementById('buktiIsi').innerHTML = `
-    <h3 style="text-align:center">NICO MOTOR SERVICE</h3>
+    <h3 style="text-align:center">NICO MOTOR SERVICE BOGOR</h3>
     <hr>
     <p><b>Kode Booking:</b> #${kode}</p>
     <p><b>Nama:</b> ${dataBooking.nama}</p>
     <p><b>Tipe Motor:</b> ${dataBooking.tipe}</p>
     <p><b>Motor:</b> ${dataBooking.motor} - ${dataBooking.plat}</p>
     <p><b>Layanan:</b> ${dataBooking.layanan}</p>
-    <p><b>Detail:</b> ${dataBooking.detailLayanan}</p>
+    ${dataBooking.oli ? `<p><b>Merk Oli:</b> ${dataBooking.oli}</p>` : ''}
     <p><b>Jadwal:</b> ${dataBooking.tanggal} Pukul ${dataBooking.jam}</p>
+    <p><b>Catatan:</b> ${dataBooking.catatan || '-'}</p>
     <p><b>Metode:</b> ${dataBooking.metode}</p>
     <hr>
-    <p>Harga Dasar: Rp ${dataBooking.hargaDasar.toLocaleString('id-ID')}</p>
-    <p>Tambahan Tipe: Rp ${dataBooking.tambahan.toLocaleString('id-ID')}</p>
     <h2 style="text-align:center; color:#e91e63">Total: Rp ${dataBooking.harga.toLocaleString('id-ID')}</h2>
   `;
   showPage('bukti');
@@ -251,4 +282,4 @@ function bayar() {
 </script>
 
 </body>
-          </html>
+</html>
