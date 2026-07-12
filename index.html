@@ -5,22 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nico Motor Service</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
 body { background: #f0f2f5; }
-nav { background: #1a1a1a; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-nav h2 { color: #ffcc00; }
+nav { background: #1a1a1a; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
+nav h2 { color: #ffcc00; font-size: 20px; }
+nav div { display: flex; gap: 10px; }
 nav button { background: #ffcc00; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-.container { max-width: 900px; margin: 20px auto; padding: 20px; }
+.container { max-width: 1000px; margin: 20px auto; padding: 15px; }
 .page { display: none; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 .page.active { display: block; }
-h1 { color: #333; margin-bottom: 15px; }
-input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; }
-.btn { background: #ffcc00; color: #000; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+h1 { color: #333; margin-bottom: 15px; font-size: 24px; }
+.banner { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; }
+.service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.service-card { border: 2px solid #eee; padding: 15px; border-radius: 10px; cursor: pointer; transition: 0.3s; display: flex; gap: 12px; }
+.service-card:hover { border-color: #ffcc00; transform: translateY(-3px); }
+.service-card img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
+.service-card h4 { color: #1a1a1a; }
+input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+.btn { background: #ffcc00; color: #000; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 10px; width: 100%; }
 .btn:hover { background: #e6b800; }
-.service-card { border: 2px solid #eee; padding: 15px; margin: 10px 0; border-radius: 8px; cursor: pointer; }
-.service-card:hover { border-color: #ffcc00; }
+.btn-secondary { background: #333; color: white; }
 .payment-method { border: 1px solid #ddd; padding: 12px; margin: 8px 0; border-radius: 5px; }
-.bukti { background: #e8f5e9; padding: 20px; border-radius: 10px; text-align: center; }
+.bukti { background: #e8f5e9; padding: 20px; border-radius: 10px; }
+.bukti-box { border: 2px dashed #333; padding: 20px; margin: 15px 0; background: white; }
+.harga-info { background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; font-size: 14px; }
+@media print { nav, .btn { display: none; } body { background: white; } }
+@media (max-width: 600px) { .container { padding: 10px; } h1 { font-size: 20px; } .service-card { flex-direction: column; } }
 </style>
 </head>
 <body>
@@ -37,18 +47,43 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
   
   <!-- HALAMAN 1: BERANDA -->
   <div id="home" class="page active">
-    <h1>Selamat Datang di Nico Motor Service</h1>
-    <p>Servis cepat, mekanik ahli, harga transparan. Booking sekarang tanpa antri!</p>
-    <img src="https://via.placeholder.com/800x300/333/ffcc00?text=BENGKEL+NICO+MOTOR" style="width:100%; border-radius:10px; margin:15px 0;">
+    <h1>Bengkel Terpercaya di Depok</h1>
+    <p>Servis cepat 30 menit, mekanik ahli, harga transparan. Booking sekarang tanpa antri!</p>
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200" class="banner" alt="Bengkel">
     <h3>Pilih Layanan Kami:</h3>
-    <div class="service-card" onclick="pilihLayanan('Ganti Oli', 50000)">
-      <h4>🛢️ Ganti Oli</h4><p>Rp 50.000 - Oli + Jasa</p>
-    </div>
-    <div class="service-card" onclick="pilihLayanan('Tune Up', 120000)">
-      <h4>⚙️ Tune Up Mesin</h4><p>Rp 120.000 - Karbu/Injeksi</p>
-    </div>
-    <div class="service-card" onclick="pilihLayanan('Ganti Ban', 80000)">
-      <h4>🛞 Ganti Ban</h4><p>Rp 80.000 - Sudah termasuk pasang</p>
+    <div class="service-grid">
+      <div class="service-card" onclick="pilihLayanan('Ganti Oli + Filter', 65000, 'Ganti oli mesin + filter oli + pengecekan 15 titik')">
+        <img src="https://images.unsplash.com/photo-1486262715619-67b85e0a3fc8?q=80&w=400" alt="Oli">
+        <div><h4>🛢️ Ganti Oli + Filter</h4><p>Mulai Rp 65.000<br><small>Oli + Jasa + Cek 15 titik</small></p></div>
+      </div>
+      <div class="service-card" onclick="pilihLayanan('Tune Up Injeksi', 150000, 'Bersihkan TB, Reset ECU, Cek busi, Cek kelistrikan')">
+        <img src="https://images.unsplash.com/photo-1607603757086-1e0b1e0a2a2a?q=80&w=400" alt="Tuneup">
+        <div><h4>⚙️ Tune Up Injeksi</h4><p>Mulai Rp 150.000<br><small>Full service injeksi</small></p></div>
+      </div>
+      <div class="service-card" onclick="pilihLayanan('Ganti Ban', 90000, 'Pasang ban baru + balancing + pentil baru')">
+        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=400" alt="Ban">
+        <div><h4>🛞 Ganti Ban</h4><p>Mulai Rp 90.000<br><small>Sudah termasuk pasang</small></p></div>
+      </div>
+      <div class="service-card" onclick="pilihLayanan('Ganti Kampas Rem', 75000, 'Ganti kampas rem depan/belakang + cek minyak rem')">
+        <img src="https://images.unsplash.com/photo-1621111848501-8dfee7a028ad?q=80&w=400" alt="Rem">
+        <div><h4>⛔ Ganti Kampas Rem</h4><p>Mulai Rp 75.000<br><small>Depan atau Belakang</small></p></div>
+      </div>
+      <div class="service-card" onclick="pilihLayanan('Service CVT', 120000, 'Bongkar CVT, bersihkan, cek roller, vanbelt, kampas ganda')">
+        <img src="https://images.unsplash.com/photo-1558981852-426c6c22a060?q=80&w=400" alt="CVT">
+        <div><h4>🔩 Service CVT</h4><p>Mulai Rp 120.000<br><small>Khusus matic</small></p></div>
+      </div>
+      <div class="service-card" onclick="pilihLayanan('Ganti Aki', 280000, 'Aki GS Astra + Garansi 6 bulan + pasang')">
+        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=400" alt="Aki">
+        <div><h4>🔋 Ganti Aki</h4><p>Mulai Rp 280.000<br><small>Garansi 6 bulan</small></p></div>
+      </div>
+      <div class="service-card" onclick="pilihLayanan('Service Rantai', 25000, 'Bersihkan rantai + lumasi + setel kekencangan')">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400" alt="Rantai">
+        <div><h4>⛓️ Service Rantai</h4><p>Mulai Rp 25.000<br><small>Bersih + Setel</small></p></div>
+      </div>
+      <div class="service-card" onclick="pilihLayanan('Cuci Motor Premium', 35000, 'Cuci body, semir ban, semir bodi, semprot mesin')">
+        <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=400" alt="Cuci">
+        <div><h4>🧽 Cuci Motor Premium</h4><p>Mulai Rp 35.000<br><small>Body + Mesin + Semir</small></p></div>
+      </div>
     </div>
     <button class="btn" onclick="showPage('booking')">Booking Sekarang</button>
   </div>
@@ -58,6 +93,7 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
     <h1>📝 Daftar Akun</h1>
     <input type="text" id="regNama" placeholder="Nama Lengkap">
     <input type="tel" id="regNo" placeholder="Nomor HP / WA">
+    <input type="email" id="regEmail" placeholder="Email">
     <input type="password" id="regPass" placeholder="Password">
     <button class="btn" onclick="daftar()">Daftar</button>
   </div>
@@ -66,13 +102,24 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
   <div id="booking" class="page">
     <h1>📅 Form Booking Servis</h1>
     <input type="text" id="nama" placeholder="Nama Pemilik" required>
-    <input type="text" id="motor" placeholder="Jenis Motor: Honda Beat, Yamaha Nmax">
+    
+    <label>Tipe Motor:</label>
+    <select id="tipeMotor" onchange="hitungUlangHarga()">
+      <option value="0">Pilih Tipe Motor</option>
+      <option value="0">1. Entry Level - Beat, Vario 110, Mio</option>
+      <option value="20000">2. Reguler - Vario 125, Nmax, PCX 160</option>
+      <option value="50000">3. Sport - CBR, R15, GSX</option>
+      <option value="100000">4. Premium - Harley, Ninja 400, Xmax 250</option>
+    </select>
+
+    <input type="text" id="motor" placeholder="Jenis Motor: Honda Beat 2023">
+    <input type="text" id="plat" placeholder="No Plat: B 1234 ABC">
     <input type="tel" id="nohp" placeholder="Nomor WA">
     <label>Tanggal Servis:</label>
     <input type="date" id="tanggal">
     <label>Jam:</label>
     <input type="time" id="jam">
-    <textarea id="keluhan" placeholder="Keluhan Motor"></textarea>
+    <textarea id="keluhan" placeholder="Keluhan Motor: Mesin brebet, Rem bunyi, dll"></textarea>
     <button class="btn" onclick="lanjutDetail()">Lanjut ke Detail</button>
   </div>
 
@@ -86,11 +133,13 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
   <!-- HALAMAN 5: PEMBAYARAN -->
   <div id="bayar" class="page">
     <h1>💳 Pembayaran</h1>
-    <p>Total Bayar: <b id="totalBayar">Rp 0</b></p>
+    <div class="harga-info" id="infoHarga"></div>
+    <p>Total Bayar: <b id="totalBayar" style="font-size:20px; color:#e91e63">Rp 0</b></p>
     <h3>Pilih Metode:</h3>
-    <div class="payment-method"><input type="radio" name="bayar" value="Transfer BCA"> Transfer BCA - 1234567890</div>
-    <div class="payment-method"><input type="radio" name="bayar" value="E-Wallet DANA"> E-Wallet DANA - 0812xxxx</div>
-    <div class="payment-method"><input type="radio" name="bayar" value="Bayar di Tempat"> Bayar di Tempat</div>
+    <div class="payment-method"><input type="radio" name="bayar" value="Transfer BCA"> <b>Transfer BCA</b> - 1234567890 a.n Nico</div>
+    <div class="payment-method"><input type="radio" name="bayar" value="E-Wallet DANA"> <b>E-Wallet DANA</b> - 081234567890</div>
+    <div class="payment-method"><input type="radio" name="bayar" value="E-Wallet OVO"> <b>E-Wallet OVO</b> - 081234567890</div>
+    <div class="payment-method"><input type="radio" name="bayar" value="Bayar di Tempat"> <b>Bayar di Tempat / COD</b></div>
     <button class="btn" onclick="bayar()">Konfirmasi Bayar</button>
   </div>
 
@@ -98,9 +147,10 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
   <div id="bukti" class="page">
     <div class="bukti">
       <h1>✅ Booking Berhasil!</h1>
-      <p id="buktiIsi"></p>
+      <div class="bukti-box" id="buktiIsi"></div>
       <p>Simpan bukti ini. Kami akan WA kamu 1 jam sebelum jadwal.</p>
-      <button class="btn" onclick="showPage('home')">Kembali ke Beranda</button>
+      <button class="btn" onclick="window.print()">🖨️ Cetak Bukti</button>
+      <button class="btn btn-secondary" onclick="showPage('home')">Kembali ke Beranda</button>
     </div>
   </div>
 
@@ -108,7 +158,7 @@ input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px
 
 <script>
 let dataBooking = {};
-let layananDipilih = {nama: 'Ganti Oli', harga: 50000};
+let layananDipilih = {nama: 'Ganti Oli + Filter', harga: 65000, detail: ''};
 
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -116,9 +166,15 @@ function showPage(id) {
   window.scrollTo(0,0);
 }
 
-function pilihLayanan(nama, harga) {
-  layananDipilih = {nama, harga};
-  alert(nama + ' dipilih - Rp ' + harga.toLocaleString('id-ID'));
+function pilihLayanan(nama, harga, detail) {
+  layananDipilih = {nama, harga, detail};
+  alert(nama + ' dipilih - Harga mulai Rp ' + harga.toLocaleString('id-ID'));
+}
+
+function hitungUlangHarga() {
+  const tambahan = parseInt(document.getElementById('tipeMotor').value);
+  const total = layananDipilih.harga + tambahan;
+  document.getElementById('totalBayar').innerText = 'Rp ' + total.toLocaleString('id-ID');
 }
 
 function daftar() {
@@ -127,23 +183,43 @@ function daftar() {
 }
 
 function lanjutDetail() {
+  const tambahan = parseInt(document.getElementById('tipeMotor').value);
+  const totalHarga = layananDipilih.harga + tambahan;
+  const tipeText = document.getElementById('tipeMotor').options[document.getElementById('tipeMotor').selectedIndex].text;
+
   dataBooking = {
     nama: document.getElementById('nama').value,
+    tipe: tipeText,
     motor: document.getElementById('motor').value,
+    plat: document.getElementById('plat').value,
     nohp: document.getElementById('nohp').value,
     tanggal: document.getElementById('tanggal').value,
     jam: document.getElementById('jam').value,
     keluhan: document.getElementById('keluhan').value,
     layanan: layananDipilih.nama,
-    harga: layananDipilih.harga
+    hargaDasar: layananDipilih.harga,
+    tambahan: tambahan,
+    harga: totalHarga,
+    detailLayanan: layananDipilih.detail
   };
+
   document.getElementById('detailIsi').innerHTML = `
     <p><b>Nama:</b> ${dataBooking.nama}</p>
-    <p><b>Motor:</b> ${dataBooking.motor}</p>
+    <p><b>Tipe Motor:</b> ${dataBooking.tipe}</p>
+    <p><b>Motor:</b> ${dataBooking.motor} - ${dataBooking.plat}</p>
     <p><b>Layanan:</b> ${dataBooking.layanan}</p>
+    <p><b>Detail:</b> ${dataBooking.detailLayanan}</p>
     <p><b>Tanggal:</b> ${dataBooking.tanggal} Jam ${dataBooking.jam}</p>
     <p><b>Keluhan:</b> ${dataBooking.keluhan}</p>
+    <p><b>Harga Dasar:</b> Rp ${dataBooking.hargaDasar.toLocaleString('id-ID')}</p>
+    <p><b>Tambahan Tipe:</b> Rp ${dataBooking.tambahan.toLocaleString('id-ID')}</p>
+    <hr>
     <p><b>Total:</b> Rp ${dataBooking.harga.toLocaleString('id-ID')}</p>
+  `;
+
+  document.getElementById('infoHarga').innerHTML = `
+    Harga Dasar: Rp ${dataBooking.hargaDasar.toLocaleString('id-ID')} <br>
+    Tambahan ${dataBooking.tipe.split('-')[0]}: Rp ${dataBooking.tambahan.toLocaleString('id-ID')}
   `;
   document.getElementById('totalBayar').innerText = 'Rp ' + dataBooking.harga.toLocaleString('id-ID');
   showPage('detail');
@@ -153,17 +229,26 @@ function bayar() {
   const metode = document.querySelector('input[name="bayar"]:checked');
   if(!metode) return alert('Pilih metode pembayaran dulu!');
   dataBooking.metode = metode.value;
+  const kode = 'NMS' + Math.floor(Math.random()*9000 + 1000);
   document.getElementById('buktiIsi').innerHTML = `
-    Kode Booking: #NMS${Math.floor(Math.random()*10000)}<br>
-    Nama: ${dataBooking.nama}<br>
-    Layanan: ${dataBooking.layanan}<br>
-    Jadwal: ${dataBooking.tanggal} ${dataBooking.jam}<br>
-    Metode: ${dataBooking.metode}<br>
-    Total: Rp ${dataBooking.harga.toLocaleString('id-ID')}
+    <h3 style="text-align:center">NICO MOTOR SERVICE</h3>
+    <hr>
+    <p><b>Kode Booking:</b> #${kode}</p>
+    <p><b>Nama:</b> ${dataBooking.nama}</p>
+    <p><b>Tipe Motor:</b> ${dataBooking.tipe}</p>
+    <p><b>Motor:</b> ${dataBooking.motor} - ${dataBooking.plat}</p>
+    <p><b>Layanan:</b> ${dataBooking.layanan}</p>
+    <p><b>Detail:</b> ${dataBooking.detailLayanan}</p>
+    <p><b>Jadwal:</b> ${dataBooking.tanggal} Pukul ${dataBooking.jam}</p>
+    <p><b>Metode:</b> ${dataBooking.metode}</p>
+    <hr>
+    <p>Harga Dasar: Rp ${dataBooking.hargaDasar.toLocaleString('id-ID')}</p>
+    <p>Tambahan Tipe: Rp ${dataBooking.tambahan.toLocaleString('id-ID')}</p>
+    <h2 style="text-align:center; color:#e91e63">Total: Rp ${dataBooking.harga.toLocaleString('id-ID')}</h2>
   `;
   showPage('bukti');
 }
 </script>
 
 </body>
-</html>
+          </html>
